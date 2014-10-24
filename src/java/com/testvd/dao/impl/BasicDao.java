@@ -15,27 +15,27 @@ import static com.testvd.init.HibernateUtil.getSession;
  */
 public class BasicDao<T extends DomainObject> implements IBasicDao<T>{
 	
-	public void save(T object, Organization org)
+	public void save(T object)
 	{
 		getSession().save(object);
 	}
 	
-	public void delete(Organization org, T object)
+	public void delete(T object)
 	{
 		getSession().delete(object);
 	}
 	
-	public void delete(long id, Organization org, Class<? extends T> persistentClass)
+	public void delete(long id, Class<? extends T> persistentClass)
 	{
-		getSession().delete(find(id,org,persistentClass));
+		getSession().delete(find(id,persistentClass));
 	}
 	
-	public T find(long id, Organization org, Class<? extends T> persistentClass)
+	public T find(long id, Class<? extends T> persistentClass)
 	{
 		return (T) getSession().get(persistentClass, new Long(id));
 	}
 	
-	public void update(T object, Organization org)
+	public void update(T object)
 	{
 		getSession().update(object);
 	}
@@ -46,3 +46,4 @@ public class BasicDao<T extends DomainObject> implements IBasicDao<T>{
 	}
 	
 }
+
